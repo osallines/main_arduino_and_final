@@ -1,0 +1,96 @@
+int D1[] = {2, 3, 4}; // Red, yellow, green
+int D2[] = {5, 6, 7};
+int D3[] = {8, 9, 10};
+int main_Counter = 0;
+int time_concluded = 7000;
+int yellow = 1500;
+int yellow_counter = 0;
+
+void setup() {
+  for (int i = 2; i <= 13; i++) pinMode(i, OUTPUT);
+  Serial.begin(9600);
+  digitalWrite(D1[0], HIGH);
+  digitalWrite(D2[0], HIGH);
+  digitalWrite(D3[0], HIGH);
+}
+
+void loop() {
+  D1: {
+    digitalWrite(D1[0], LOW);
+    digitalWrite(D1[1], LOW);
+    digitalWrite(D1[2], HIGH);
+    for (int i = 0; i <= time_concluded; i++) 
+    {delay(1);
+      if (Serial.available() > 0) 
+      {goto Thecode;}}
+
+    digitalWrite(D1[0], LOW);
+    digitalWrite(D1[1], HIGH);
+    digitalWrite(D1[2], LOW);
+    for (int i = 0; i <= yellow; i++) {delay(1);
+    if (Serial.available() > 0)
+    {goto Thecode;}}
+
+    digitalWrite(D1[0], HIGH);
+    digitalWrite(D1[1], LOW);
+    digitalWrite(D1[2], LOW);
+    if (Serial.available() > 0) goto Thecode;
+  }
+
+  D2: {
+    digitalWrite(D2[0], LOW);
+    digitalWrite(D2[1], LOW);
+    digitalWrite(D2[2], HIGH);
+    for (int i = 0; i <= time_concluded; i++){ delay(1);
+    if (Serial.available() > 0) 
+    {goto Thecode;}}
+
+    digitalWrite(D2[0], LOW);
+    digitalWrite(D2[1], HIGH);
+    digitalWrite(D2[2], LOW);
+    for (int i = 0; i <= yellow; i++) {delay(1);
+    if (Serial.available() > 0) 
+    { goto Thecode;}}
+
+    digitalWrite(D2[0], HIGH);
+    digitalWrite(D2[1], LOW);
+    digitalWrite(D2[2], LOW);
+    if (Serial.available() > 0) goto Thecode;
+  }
+
+  D3: {
+    digitalWrite(D3[0], LOW);
+    digitalWrite(D3[1], LOW);
+    digitalWrite(D3[2], HIGH);
+    for (int i = 0; i <= time_concluded; i++)
+    {delay(1);
+     if (Serial.available() > 0) 
+     {goto Thecode;}}
+
+    digitalWrite(D3[0], LOW);
+    digitalWrite(D3[1], HIGH);
+    digitalWrite(D3[2], LOW);
+    for (int i = 0; i <= yellow; i++) {delay(1);
+    if (Serial.available() > 0) 
+    { goto Thecode;}}
+
+    digitalWrite(D3[0], HIGH);
+    digitalWrite(D3[1], LOW);
+    digitalWrite(D3[2], LOW);
+    if (Serial.available() > 0) goto Thecode;
+  }
+
+  if (true == false) {
+  Thecode:
+    Serial.println("weselna nos el taree2");
+    String input = Serial.readString();
+    for (int i = 2; i<=13; i++)
+    {digitalWrite(i,LOW);}
+    digitalWrite(D1[0],HIGH);
+    digitalWrite(D2[0],HIGH);
+    digitalWrite(D3[0],HIGH);
+    if (input == "D1") goto D1;
+    if (input == "D2") goto D2;
+    if (input == "D3") goto D3;
+  }
+}
